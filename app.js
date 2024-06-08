@@ -29,6 +29,18 @@ app.post("/", async (req, res) => {
   res.json({ generatedText: text });
 });
 
+app.post("/all-review", async (req, res) => {
+  const genAI = new GoogleGenerativeAI(process.env.API_KEY);
+  const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+  const prompt = `${req.body.value} 上記文章は日報です。誤字脱字があれば校閲してください。日報の内容についてモチベーションが上がるように誉めてください。また太字のマークダウンの代わりに見出しや箇条書きを使って書いてください。改善点があれば具体的に記述してください`;
+
+  const result = await model.generateContent(prompt);
+  const response = await result.response;
+  const text = response.text();
+
+  res.json({ generatedText: text });
+});
+
 const server = app.listen(port, () =>
   console.log(`Example app listening on port ${port}!`)
 );
