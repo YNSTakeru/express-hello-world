@@ -9,7 +9,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: "https://nippo-kun.vercel.app/",
+    origin: "http://localhost:3000",
   })
 );
 app.use(bodyParser.json());
