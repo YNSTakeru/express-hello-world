@@ -19,9 +19,8 @@ const port = process.env.PORT || 3001;
 
 app.post("/", async (req, res) => {
   const originUrl = req.headers.origin;
-  console.log(originUrl);
 
-  if (originUrl !== "https://nippo-kun.vercel.app/") {
+  if (originUrl !== "https://nippo-kun.vercel.app") {
     res.json({ message: "Hello World!" });
     return;
   }
@@ -40,7 +39,7 @@ app.post("/", async (req, res) => {
 app.post("/all-review", async (req, res) => {
   const originUrl = req.headers.origin;
 
-  if (originUrl !== "https://nippo-kun.vercel.app/") {
+  if (originUrl !== "https://nippo-kun.vercel.app") {
     res.json({ message: "Hello World!" });
     return;
   }
