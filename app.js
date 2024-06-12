@@ -18,9 +18,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const port = process.env.PORT || 3001;
 
 app.post("/", async (req, res) => {
-  const fullUrl = req.protocol + "://" + req.headers.host + req.url;
-  console.log(fullUrl);
-  if (fullUrl !== "https://nippo-kun.vercel.app/") {
+  const originUrl = req.headers.origin;
+  console.log(originUrl);
+
+  if (originUrl !== "https://nippo-kun.vercel.app/") {
     res.json({ message: "Hello World!" });
     return;
   }
@@ -37,8 +38,9 @@ app.post("/", async (req, res) => {
 });
 
 app.post("/all-review", async (req, res) => {
-  const fullUrl = req.protocol + "://" + req.headers.host + req.url;
-  if (fullUrl !== "https://nippo-kun.vercel.app/") {
+  const originUrl = req.headers.origin;
+
+  if (originUrl !== "https://nippo-kun.vercel.app/") {
     res.json({ message: "Hello World!" });
     return;
   }
